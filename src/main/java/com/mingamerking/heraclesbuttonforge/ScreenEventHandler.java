@@ -17,11 +17,11 @@ public class ScreenEventHandler {
         System.out.println("Screen Opened");
         Screen screen = event.getScreen();
         if (screen instanceof InventoryScreen inventoryScreen) {
-            addQuestButton(inventoryScreen, event);
+            addQuestButton(inventoryScreen);
         }
     }
 
-    private static void addQuestButton(InventoryScreen inventoryScreen, ScreenEvent.Init.Post event) {
+    private static void addQuestButton(InventoryScreen inventoryScreen) {
         // Create a new QuestButton and add it to the screen's widgets
         int x = inventoryScreen.getGuiLeft() + 10; // Adjust as necessary
         int y = inventoryScreen.getGuiTop() + 10; // Adjust as necessary
@@ -30,7 +30,8 @@ public class ScreenEventHandler {
             HeraclesClient.openQuestScreen();
         }, inventoryScreen);
 
-        event.addListener(questButton);
+        inventoryScreen.renderables.add(questButton);
+
         System.out.println("Button added to inventory");
     }
 }
