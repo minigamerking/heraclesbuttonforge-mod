@@ -1,6 +1,5 @@
 package com.mingamerking.heraclesbuttonforge.gui;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.AbstractButton;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
@@ -9,7 +8,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.InventoryMenu;
 
-import java.util.Collections;
 import java.util.function.Consumer;
 
 public class QuestButton extends AbstractButton {
@@ -35,18 +33,7 @@ public class QuestButton extends AbstractButton {
     @Override
     public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         System.out.println("Rendering");
-        visible = screen.getMenu() instanceof InventoryMenu;
-        if (isHovered) {
-            guiGraphics.blit(QUEST_BUTTON, getX(), getY(), 0, 14, WIDTH, HEIGHT, 32, 32);
-            guiGraphics.renderTooltip(
-                    Minecraft.getInstance().font,
-                    Collections.singletonList(Component.translatable("tooltip.heraclesbuttonforge.quest_button").getVisualOrderText()),
-                    mouseX,
-                    mouseY
-            );
-        } else {
-            guiGraphics.blit(QUEST_BUTTON, getX(), getY(), 0, 0, WIDTH, HEIGHT, 32, 32);
-        }
+        guiGraphics.blit(QUEST_BUTTON, getX(), getY(), 0, 14, WIDTH, HEIGHT, 32, 32);
     }
 
     @Override

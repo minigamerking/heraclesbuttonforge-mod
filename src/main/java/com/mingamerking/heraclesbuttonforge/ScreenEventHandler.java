@@ -13,25 +13,24 @@ import net.minecraftforge.fml.common.Mod;
 public class ScreenEventHandler {
 
     @SubscribeEvent
-    public static void onScreenOpen(ScreenEvent.Opening event) {
+    public static void onScreenOpen(ScreenEvent.Init.Post event) {
         System.out.println("Screen Opened");
-        Screen screen = event.getNewScreen();
+        Screen screen = event.getScreen();
         if (screen instanceof InventoryScreen inventoryScreen) {
-            addQuestButton(inventoryScreen);
+            addQuestButton(inventoryScreen, event);
         }
     }
 
-    private static void addQuestButton(InventoryScreen inventoryScreen) {
+    private static void addQuestButton(InventoryScreen inventoryScreen, ScreenEvent.Init.Post event) {
         // Create a new QuestButton and add it to the screen's widgets
-        int x = inventoryScreen.getGuiLeft() + 100; // Adjust as necessary
-        int y = inventoryScreen.getGuiTop() + 100; // Adjust as necessary
+        int x = inventoryScreen.getGuiLeft() + 10; // Adjust as necessary
+        int y = inventoryScreen.getGuiTop() + 10; // Adjust as necessary
         QuestButton questButton = new QuestButton(x, y, button -> {
             // Define what happens when the button is pressed
             HeraclesClient.openQuestScreen();
         }, inventoryScreen);
 
-        // Add the button to the screen's renderables and children
-        inventoryScreen.renderables.add(questButton);
+        event.addListener(questButton);
         System.out.println("Button added to inventory");
     }
 }
