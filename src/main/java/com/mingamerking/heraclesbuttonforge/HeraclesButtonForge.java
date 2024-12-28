@@ -36,6 +36,10 @@ public class HeraclesButtonForge
         modEventBus.addListener(this::addCreative);
     }
 
+    public static void log(String message) {
+        LOGGER.info(message);
+    }
+
     private void commonSetup(final FMLCommonSetupEvent event)
     {
     }

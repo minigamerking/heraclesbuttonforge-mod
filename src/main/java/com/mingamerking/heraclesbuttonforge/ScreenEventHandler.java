@@ -14,7 +14,7 @@ public class ScreenEventHandler {
 
     @SubscribeEvent
     public static void onScreenOpen(ScreenEvent.Init.Post event) {
-        System.out.println("Screen Opened");
+        HeraclesButtonForge.log("Screen Opened");
         Screen screen = event.getScreen();
         if (screen instanceof InventoryScreen inventoryScreen) {
             addQuestButton(inventoryScreen);
@@ -32,6 +32,6 @@ public class ScreenEventHandler {
 
         inventoryScreen.renderables.add(questButton);
 
-        System.out.println("Button added to inventory");
+        HeraclesButtonForge.log("Quest button added to inventory screen");
     }
 }
